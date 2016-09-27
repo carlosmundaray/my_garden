@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::auth();
+	Route::resource('periodico','PeriodicoController');
+    Route::resource('user','UserController');
+	
+	
+});
+
+ 
+Route::get('edicion', 'EdicionController@periodico');
